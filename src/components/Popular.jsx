@@ -21,15 +21,17 @@ function Popular() {
       } catch (error) {
         console.error(
           "Error parsing popular recipes from localStorage:",
-          error,
+          error
         );
         localStorage.removeItem("popular");
-        setError("Failed to parse saved recipes. Please try again.");
+        setError(
+          "Failed to parse saved recipes. Please try again. API doesn't allow more than 150 request per day :((("
+        );
       }
     } else {
       try {
         const api = await fetch(
-          `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`,
+          `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
         );
         if (!api.ok) {
           throw new Error("Failed to fetch data");
@@ -39,7 +41,9 @@ function Popular() {
         setPopular(data.recipes);
       } catch (error) {
         console.error("Error fetching popular recipes:", error);
-        setError("Failed to fetch popular recipes. Please try again.");
+        setError(
+          "Failed to fetch popular recipes. Please try again. API doesn't allow more than 150 request per day :((("
+        );
       }
     }
   };
