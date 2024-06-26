@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import { FormStyle } from "./StyledComponents";
+import { FaSearch, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { FormStyle, CloseIcon } from "./StyledComponents";
 
 function Search() {
-  const [input, setinput] = useState("");
+  const [input, setInput] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -12,12 +13,32 @@ function Search() {
     e.preventDefault();
     navigate("/searched/" + input);
   };
+
+  const handleSearchClick = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseClick = (e) => {
+    e.stopPropagation();
+    setIsOpen(false);
+  };
+
   return (
-    <FormStyle onSubmit={handleSubmit}>
+    <FormStyle
+      onClick={handleSearchClick}
+      onSubmit={handleSubmit}
+      isOpen={isOpen}
+    >
       <div>
-        <FaSearch></FaSearch>
+        {isOpen ? (
+          <CloseIcon onClick={handleCloseClick}>
+            <FaTimes />
+          </CloseIcon>
+        ) : (
+          <FaSearch />
+        )}
         <input
-          onChange={(e) => setinput(e.target.value)}
+          onChange={(e) => setInput(e.target.value)}
           type="text"
           value={input}
         />
@@ -25,4 +46,5 @@ function Search() {
     </FormStyle>
   );
 }
+
 export default Search;

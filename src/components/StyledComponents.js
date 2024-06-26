@@ -4,6 +4,14 @@ import { motion } from "framer-motion";
 
 export const Wrapper = styled.div`
   margin: 4rem 0;
+
+  @media (max-width: 768px) {
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 480px) {
+    margin: 1rem 0;
+  }
 `;
 
 export const Card = styled.div`
@@ -33,8 +41,17 @@ export const Card = styled.div`
     font-weight: 600;
     font-size: 1rem;
     height: 40%;
+    display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -123,6 +140,7 @@ export const RecipeTile = styled.div`
 
 export const FormStyle = styled.form`
   margin: 0 20rem;
+
   & div {
     width: 100%;
     position: relative;
@@ -138,14 +156,57 @@ export const FormStyle = styled.form`
     border-radius: 1rem;
     outline: none;
     width: 100%;
+    transition: width 0.3s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      width: ${({ isOpen }) => (isOpen ? "calc(100vw - 4rem)" : "0")};
+    }
   }
 
   & svg {
     position: absolute;
+    font-size: 1.2rem;
     top: 50%;
-    left: 0%;
-    transform: translate(100%, -50%);
+    left: 5%;
+    transform: translateY(-50%);
     fill: white;
+    cursor: pointer;
+    transition: left 0.3s ease-in-out;
+
+    @media (max-width: 768px) {
+      left: ${({ isOpen }) => (isOpen ? "2rem" : "0.7rem")};
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin: 0;
+    position: absolute;
+    top: 7rem;
+    right: ${({ isOpen }) => (isOpen ? "1rem" : "-3rem")};
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: right 0.3s ease-in-out;
+
+    & div {
+      width: auto;
+      display: flex;
+      align-items: center;
+    }
+  }
+`;
+
+export const CloseIcon = styled.div`
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    right: 1rem;
   }
 `;
 
@@ -198,6 +259,7 @@ export const Logo = styled(Link)`
 export const Nav = styled.nav`
   width: 100%;
   padding: 2rem 0rem;
+  margin-bottom: 5rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
