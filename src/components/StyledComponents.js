@@ -140,10 +140,16 @@ export const RecipeTile = styled.div`
 
 export const FormStyle = styled.form`
   margin: 0 20rem;
+  display: flex;
+  justify-content: center;
 
   & div {
     width: 100%;
     position: relative;
+    min-width: 20rem;
+    @media (max-width: 768px) {
+      min-width: 0;
+    }
   }
 
   & input {
