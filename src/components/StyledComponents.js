@@ -146,9 +146,10 @@ export const FormStyle = styled.form`
   & div {
     width: 100%;
     position: relative;
-    min-width: 20rem;
+    min-width: 36rem;
     @media (max-width: 768px) {
       min-width: 0;
+      position: initial;
     }
   }
 
@@ -162,7 +163,6 @@ export const FormStyle = styled.form`
     border-radius: 1rem;
     outline: none;
     width: 100%;
-    transition: width 0.3s ease-in-out;
     white-space: nowrap;
     overflow: hidden;
 
@@ -179,7 +179,6 @@ export const FormStyle = styled.form`
     transform: translateY(-50%);
     fill: white;
     cursor: pointer;
-    transition: left 0.3s ease-in-out;
 
     @media (max-width: 768px) {
       left: ${({ isOpen }) => (isOpen ? "2rem" : "0.7rem")};
@@ -193,7 +192,6 @@ export const FormStyle = styled.form`
     right: ${({ isOpen }) => (isOpen ? "1rem" : "-3rem")};
     transform: translateY(-50%);
     z-index: 10;
-    transition: right 0.3s ease-in-out;
 
     & div {
       width: auto;
@@ -212,7 +210,7 @@ export const CloseIcon = styled.div`
   cursor: pointer;
 
   @media (max-width: 768px) {
-    right: 1rem;
+    left: -1rem;
   }
 `;
 
